@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTION 2</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 30px;
+            padding: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .users__table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .users__table thead {
+            background-color: #4ee7d2;
+        }
+
+        .users__table,
+        .users__table th,
+        .users__table td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="users__table"></table>
+    </div>
+</body>
+<script>
+    // url: https://jsonplaceholder.typicode.com/users
+    fetch('https:jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => {
+            const table = document.querySelector('.users__table');
+            const tableHead = document.createElement('thead');
+            const tableBody = document.createElement('tbody');
+            const tableHeadRow = document.createElement('tr');
+            const tableHeadRowData = ['Name', 'Username', 'Email', 'Phone', 'Website'];
+            tableHeadRowData.forEach(data => {
+                const tableHeadRowData = document.createElement('th');
+                tableHeadRowData.innerHTML = data;
+                tableHeadRow.appendChild(tableHeadRowData);
+            })
+            tableHead.appendChild(tableHeadRow);
+            table.appendChild(tableHead);
+            json.forEach(user => {
+                const tableBodyRow = document.createElement('tr');
+                const tableBodyRowData = [user.name, user.username, user.email, user.phone, user.website];
+                tableBodyRowData.forEach(data => {
+                    const tableBodyRowData = document.createElement('td');
+                    tableBodyRowData.innerHTML = data;
+                    tableBodyRow.appendChild(tableBodyRowData);
+                })
+                tableBody.appendChild(tableBodyRow);
+            })
+            table.appendChild(tableBody);
+        })
+</script>
+
+</html>
