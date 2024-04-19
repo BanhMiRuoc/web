@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+}
+.header {
+    background-color: #1B4D3E;
+    color: white;
+    padding: 20px 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.header:hover {
+    background-color: #191970;
+}
+[class*= "col-"]{
+    padding: 16px;
+    float: left;
+}
+.content::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.col-1{width: 8.33%}
+.col-2{width: 16.66%}
+.col-3{width: 25%}
+.col-4{width: 33.33%}
+.col-5{width: 41.66%}
+.col-6{width: 50%}
+.col-7{width: 58.33%}
+.col-8{width: 66.66%}
+.col-9{width: 75%}
+.col-10{width: 83.33%}
+.col-11{width: 91.66%}
+.col-12{width: 100%}
+
+@media screen and (max-width: 960px) {
+    .col-s-1{width: 8.33%}
+    .col-s-2{width: 16.66%}
+    .col-s-3{width: 25%}
+    .col-s-4{width: 33.33%}
+    .col-s-5{width: 41.66%}
+    .col-s-6{width: 50%}
+    .col-s-7{width: 58.33%}
+    .col-s-8{width: 66.66%}
+    .col-s-9{width: 75%}
+    .col-s-10{width: 83.33%}
+    .col-s-11{width: 91.66%}
+    .col-s-12{width: 100%}
+}
+
+@media screen and (max-width: 650px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+.content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.content li{
+    background-color: #536878;
+    padding: 10px 20px;
+    color: white;
+    margin: 0px 0px 6px 0px;
+}
+.content li:hover {
+    background-color: #2A3439;
+}
+.content .aside {
+    background-color: #536878;
+    color: white;
+}
+.content .aside:last-child {
+    padding-bottom: 20px;
+}
+.content .aside:hover {
+    background-color: #2A3439;
+}
+.content .aside h2 {
+    padding: 13px 0px 10px 0px;
+    margin: 0;
+}   
+.content .aside h2 ,
+.content .aside p {
+    text-align: center;
+}
+.content .col-5.col-s-8 {
+    padding: 20px;
+    margin: 0;
+}
+.content .col-5.col-s-8 h1 {
+    padding-bottom: 18px;
+}
+.footer {
+    background-color: #536878;
+    color: white;
+    text-align: center;
+    padding: 20px 0px;
+}
+.footer:hover {
+    background-color: #2A3439;
+}
