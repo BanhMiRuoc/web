@@ -1,0 +1,53 @@
+body {
+    background-color: #FFF8DF;
+    box-sizing: border-box;
+}
+form {
+    padding: 20px;
+    border: solid 1px lightgrey;
+    border-radius: 15px;
+    background-color: white;
+    margin: auto;
+    width: fit-content;
+}
+.content .form-group input, select {
+    margin: 10px 0;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.content .form-group #email {
+    margin: 10px 0 2px;
+}
+.content .form-group .input-error {
+    color: #bc1313;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.content .form-group #male, #female {
+    width: 5%;
+}
+.content .form-group #rgt, #rs {
+    background-color: #dd2c2c;
+    color: white;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+}
+.content .form-group #rs {
+    background-color: #e3a73f;
+}
+.content .form-group input:hover, .form-control:hover {
+    background-color: #fff5cf;
+}
+.content .form-group input:focus, select:focus {
+    background-color:  #f3de8e;
+    border: 3px solid #d97000;
+}
+.content .form-group #rs:hover {
+    background-color: #ada200;
+}
+.content .form-group #rgt:hover {
+    background-color: #bc1313;
+}

@@ -1,0 +1,6 @@
+*{
+    transition: all .3s ease-in-out;
+}
+body {
+    background-color: whitesmoke;
+}

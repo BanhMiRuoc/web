@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+#chat {
+    background-color: white;
+    padding: 5px;
+}
+#chat .content {
+    overflow: scroll;
+}
+#chat .hoder {
+    background-color: #E5E4E2;
+    float: left;
+    clear: both;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px 0px 5px 5px;
+    max-width: 47%;
+}
+#chat .hoder.me:hover {
+    background-color: green;
+}
+#chat .hoder:hover {
+    background-color: #C0C0C0;
+}
+#chat .hoder.me {
+    background-color: #03C03C;
+    color: white;
+    float: right;
+    clear: both;
+}
+::-webkit-scrollbar {
+    display: none;
+}
