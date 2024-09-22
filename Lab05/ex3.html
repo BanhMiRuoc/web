@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="ex3.css">
+  <!-- <script src="ex3.js"></script> -->
+  <title>Xếp Hình Khoa CNTT</title>
+  <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      var targetCell = ev.target;
+  
+      // Check if the target cell is empty
+      if ($(targetCell).children().length === 0) {
+          targetCell.appendChild(document.getElementById(data));
+      }
+      if(checkIfAllDivsHaveImages('.drop-cell') && checkImageIDs()) {
+          $('body').append('<div class="noti"><b>Congratulations!</b> You have completed the puzzle game.</div>')
+      }
+  }
+    function rotateImage(selector) {
+      $(selector).click(function() {
+  
+        var currentRotation = $(this).data('rotation') || 0;
+        var newRotation = (currentRotation + 90) % 270;
+  
+        $(this).css({
+          'transform': 'rotate(' + newRotation + 'deg)'
+        });
+        $(this).data('rotation', newRotation);
+      });
+    }
+  function makeBlocks(n, m) {
+      let k = 1;
+      for (let i = 0; i < n; i++) {
+          for (let j = 0; j < m; j++) {
+              $(".grid-drop").append('<div class="drop-cell" id="divv' + k + '"></div>');
+              k++;
+          }
+      }
+  }
+  function getUrl(start, end) {
+      var randomNum = Math.floor(Math.random() * (end - start + 1)) + start;
+      var num = ("0" + randomNum).slice(-2);
+      var img = "images/cntt_" + num + ".gif";
+      return img;
+  }
+  
+  function createImageGrid(rows, cols) {
+      var storeImg = $(".grid-store");
+      usedUrls = [];
+      var k = 1;
+      for (var i = 0; i < rows; i++) {
+          for (var j = 0; j < cols; j++) {
+              var imageUrl;
+              do {
+                  imageUrl = getUrl(1, 10);
+                  var numberRegex = /cntt_(\d+).gif/;
+                  var match = imageUrl.match(numberRegex);
+              } while (usedUrls.includes(imageUrl));
+              usedUrls.push(imageUrl);
+              var image = $("<div class='drop-img' id='div" +k + "' ondrop='drop(event)' ondragover='allowDrop(event)'><img src='" + imageUrl + "' draggable='true' ondragstart='drag(event)' alt='Image' id='drag" +match[1]+ "' width='115' height='120'></div>");
+              var flipType = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+              image.css('transform', 'scaleX(' + (flipType === 'horizontal' ? -1 : 1) + ') scaleY(' + (flipType === 'vertical' ? -1 : 1) + ')');
+              storeImg.append(image);
+              k++;
+          }
+      }
+  }
+  function checkIfAllDivsHaveImages(divSelector) {
+      var divElements = $(divSelector);
+      var emptyDivCount = 0; 
+      divElements.each(function() {
+        if (!$(this).find('img').length) {
+          emptyDivCount++;
+        }
+      });
+  
+      if (emptyDivCount === 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+    function checkImageIDs() {
+      var correctOrder = true;
+      $('.drop-cell').each(function() {
+          // Extract cell ID
+          var cellID = parseInt($(this).attr('id').replace('divv', ''));
+          // Extract image ID
+          var imageID = parseInt($(this).children().attr('id').replace('drag', ''));
+          // Check if cell ID matches image ID
+          console.log(cellID, imageID)
+          if (cellID !== imageID) {
+              
+              correctOrder = false;
+          }
+      });
+      return correctOrder
+  }
+  $(document).ready(function(){
+      makeBlocks(3, 3);
+      createImageGrid(2, 5);
+      rotateImage('.drop-img');
+      rotateImage('.drop-cell');
+  
+  });
+  </script>
+</head>
+<body>
+  <h1>Xếp Hình</h1>
+  
+  <div class="container grid-drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+  <div class="container grid-store" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+</html>

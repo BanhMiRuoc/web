@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<style>
+
+    .alert{
+        max-width: 500px;
+        margin: auto;
+    }
+</style>
+
+<script>
+
+
+    $(document).ready(function ()  {
+
+        // đọc dữ liệu ngay khi tải trang xong
+
+        $.get("http://localhost/get-students.php", function(data, status) {  
+            },"json");
+        $(".add-student").click(function () {
+        });
+    });
+
+
+    // hiện dialog xác nhận khi xóa
+    function confirmRemoval() {
+        document.getElementById("producer-name").innerHTML = "My Tam";
+        $('#confirm-removal-modal').modal({show: true});
+    }
+
+
+    // hiện thông báo lỗi
+    function showFailedDialog() {
+        document.getElementById("error-message").innerHTML = "An unknown error occured. Please try again later";
+        $('#delete-failed-modal').modal({show: true});
+    }
+</script>
+
+<div class="container">
+    <h3 class="text-primary mt-3">Student Management using Ajax</h1>
+    <p>Khi trang web vừa được tải, cần gửi một request đến server, nhận về danh sách sinh viên đang có & hiện lên bảng.</p>
+    <p>Nhấn <b>Add</b> để thêm một sinh viên vào danh sách: trước hết thông tin sẽ gửi lên server và lưu vào database, server sẽ trả về kết quả. Nếu kết quả là <b>true</b> thì đưa thông tin sinh viên vừa thêm vào bảng. Nếu lỗi hoặc thành công thì hiện thông báo tương ứng như phía dưới rồi tự ẩn đi sau 5 giây.</p>
+    <p>Khi nhấn <b>Edit</b> thông tin sẽ được chuyển qua form để sửa, lúc này disable nút <b>Add</b> và enable nút <b>Update</b>, quá trình update cũng tương tự như thêm, gửi thông tin lên server, nhận kết quả rồi cập nhật bảng/hiển thị thông báo tương ứng.</p>
+    <p>Khi nhấn <b>Delete</b> thì hiện dialog xác nhận trước rồi gửi lệnh xóa lên server, lúc nhận kết quả về làm tương tự các bước trước.</p>
+    <div class="row">
+        <div class="col-md-3">
+            <form class="form-horizontal w-100">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="phone">Phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone">
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-success add-student">Add</button>
+                    <button type="submit" class="btn btn-warning disabled">Update</button>
+                </div>
+            </form>
+
+
+        </div> <!-- Col 1 -->
+        <div class="col-md-9 mt-2">
+            <table class="table table-hover mt-4">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                <tr>
+                    <td>1</td>
+                    <td>Lam Truong</td>
+                    <td>john@example.com</td>
+                    <td>01234567789</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="#">Edit</a>  <a class="btn btn-sm btn-danger" href="#" onclick="confirmRemoval()">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Cam Ly</td>
+                    <td>john@example.com</td>
+                    <td>01234567789</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="#">Edit</a>  <a class="btn btn-sm btn-danger" href="#" onclick="confirmRemoval()">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>My Tam</td>
+                    <td>john@example.com</td>
+                    <td>01234567789</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="#" onclick="showFailedDialog()">Edit</a>  <a class="btn btn-sm btn-danger" href="#" onclick="confirmRemoval()">Delete</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div> <!-- col 2-->
+    </div>
+
+
+    <br><br>
+    <div class="alert alert-success alert-dismissable ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Delete student success.
+    </div>
+    <br>
+    <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> An unknown eror occured. Please try again later.
+    </div>
+
+</div>
+
+
+<!-- Confirm Removal Modal -->
+<div class="modal fade" id="confirm-removal-modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Xóa sinh viên</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sinh viên <strong id="producer-name">My Tam</strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete-button" class="btn btn-danger" data-dismiss="modal">Xóa</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+            </div>
+        </div>
+
+    </div>
+</div><!-- Confirm Removel modal -->
+
+
+</body>
+</html>

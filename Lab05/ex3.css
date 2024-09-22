@@ -1,0 +1,41 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+.grid-drop {
+    width: 360px;
+    height: 380px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10px, 1fr));
+    grid-gap: 3px;
+    margin:auto;
+    margin-bottom: 50px;
+}
+.drop-cell {
+    width: 115px;
+    height: 120px;
+    border: 1px solid black;
+    text-align: center;
+}
+.grid-store {
+    width: 600px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: repeat(5,minmax(100px, 1fr));
+    grid-gap: 3px;
+    margin:auto;
+}
+.container div{
+    width: 115px;
+    height: 120px;
+    border: 1px solid black;
+}
+.noti {
+    justify-content: center;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgb(144, 255, 144);
+    color: rgb(0, 128, 0);
+}
+

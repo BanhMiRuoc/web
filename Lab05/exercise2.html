@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đăng nhập</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="ex2.js"></script>
+    <style>
+        .user-login {
+            text-align: center;
+            margin: 10px;
+            color:rgb(64, 128, 255);
+        }
+        form {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            margin: auto;
+            width: 500px;
+            border: 1px solid lightgrey;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        label, #button-submit {
+            display: block;
+            margin: 10px 0;
+        }
+        #button-submit {
+            width: 100px;
+            height: 40px;
+            border: 1px white solid;
+            background-color: rgb(100, 128, 255);
+            color: white;
+            border-radius: 5px;
+        }
+        #mail, #pword {
+            border-radius: 5px;
+            width: 450px;
+            border: 1px solid lightgrey;
+            padding-left: 10px;
+        }
+        #button-submit:active {
+            background-color: rgb(3, 3, 111);
+        }
+        #errorMessage {
+            color: red;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="user-login">User Login</h1>
+    <form id='my-form'action="" method="get">
+        <div class="email-input">
+            <label for="email" class="email">Email:</label>
+            <input type="text" name="email" id="mail" placeholder="Enter email">
+        </div>
+        <div class="password-input">
+            <label for="password" class="pw">Password:</label>
+            <input type="password" name="password" id="pword" placeholder="Enter password">
+        </div>
+        <div id="errorMessage"></div>
+        <input id="button-submit"type="button" value="Submit">
+    </form>
+</body>
+</html>
